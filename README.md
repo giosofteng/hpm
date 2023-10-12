@@ -1,10 +1,10 @@
-# HISTORY/MINUTE
+# HISTORY / MINUTE
  
 ### Tech Stack (JavaScript / Python)
 * React
 * Flask
 * SQLite (via SQLAlchemy)
-* RabbitMQ
+* RabbitMQ (via Pika)
 * Heroku
 * Prometheus
 * Grafana
