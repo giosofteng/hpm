@@ -33,7 +33,3 @@ class DataCollector:
 
             time.sleep(5)
         # self.connection.close()
-
-
-data_collector = DataCollector()
-data_collector.start_data_collection()
