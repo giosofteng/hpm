@@ -12,7 +12,9 @@ class DataTransformer:
     def transform_data(self, channel, method, properties, body):
         data = json.loads(body)
         print(data)  # ! DEBUG
-        self.channel.basic_publish(exchange='', routing_key='data_trans', body=data['primaryImageSmall'])
+        img_url = data['primaryImageSmall']
+        if img_url:
+            self.channel.basic_publish(exchange='', routing_key='data_trans', body=img_url)
 
     def start_transforming_data(self):
         self.channel.basic_consume(queue='data_raw', on_message_callback=self.transform_data, auto_ack=True)
