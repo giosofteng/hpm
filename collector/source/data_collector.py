@@ -1,6 +1,5 @@
 import json
 import pika
-import random
 import requests
 import time
 
@@ -24,12 +23,9 @@ class DataCollector:
 
     def start_data_collection(self):
         self.object_ids = self.get_object_ids()
-        while True:
-            # ? re-collect object IDs after N attempts
-            object_id = random.choice(self.object_ids)
+        for object_id in self.object_ids:
             data = self.get_object_data(object_id)
+            self.channel.basic_publish(exchange='', routing_key='data_raw', body=json.dumps(data).encode('UTF-8'))
 
-            self.channel.basic_publish(exchange='', routing_key='data_raw', body=json.dumps(data))
-
-            time.sleep(5)
-        # self.connection.close()
+            time.sleep(1)
+        self.start_data_collection()

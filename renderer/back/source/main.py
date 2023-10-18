@@ -1,4 +1,5 @@
 import pika
+import random
 
 from db import DB
 
@@ -13,8 +14,10 @@ channel.queue_declare(queue='data_trans')
 def consume_data(channel, method, properties, body):
     img_url = body.decode('UTF-8')
     db.put(img_url)
-    print(db.get())
-    # print(img_url)  # ! DEBUG; STORE IN DB
+    # DEBUG
+    urls = db.get()
+    print(urls)
+    print(random.choices(urls))
 
 
 channel.basic_consume(queue='data_trans', on_message_callback=consume_data, auto_ack=True)

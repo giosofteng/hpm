@@ -1,5 +1,6 @@
 import json
 import pika
+import requests
 
 
 class DataTransformer:
@@ -14,7 +15,9 @@ class DataTransformer:
         print(data)  # ! DEBUG
         img_url = data['primaryImageSmall']
         if img_url:
-            self.channel.basic_publish(exchange='', routing_key='data_trans', body=img_url)
+            response = requests.get(img_url)
+            if response.status_code == 200:
+                self.channel.basic_publish(exchange='', routing_key='data_trans', body=img_url)
 
     def start_transforming_data(self):
         self.channel.basic_consume(queue='data_raw', on_message_callback=self.transform_data, auto_ack=True)
