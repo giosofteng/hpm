@@ -9,9 +9,10 @@ class DataCollector:
         self.api_url = 'https://collectionapi.metmuseum.org/public/collection/v1/'
         self.object_ids = []
 
-        self.connection = pika.BlockingConnection(pika.ConnectionParameters(host='localhost'))
-        self.channel = self.connection.channel()
-        self.channel.queue_declare(queue='data_raw')
+        parameters = pika.ConnectionParameters('localhost')  # ! DEBUG
+        connection = pika.BlockingConnection(parameters)
+        self.channel = connection.channel()
+        self.channel.queue_declare('data_raw')
 
     def get_object_ids(self):
         response = requests.get(self.api_url + 'objects')
@@ -24,8 +25,8 @@ class DataCollector:
     def start_data_collection(self):
         self.object_ids = self.get_object_ids()
         for object_id in self.object_ids:
-            data = self.get_object_data(object_id)
-            self.channel.basic_publish(exchange='', routing_key='data_raw', body=json.dumps(data).encode('UTF-8'))
+            object_data = self.get_object_data(object_id)
+            self.channel.basic_publish('', 'data_raw', json.dumps(object_data).encode('UTF-8'))
 
             time.sleep(1)
         self.start_data_collection()
