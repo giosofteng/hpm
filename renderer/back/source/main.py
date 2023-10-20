@@ -14,10 +14,9 @@ channel.queue_declare(queue='data_trans')
 def consume_data(channel, method, properties, body):
     img_url = body.decode('UTF-8')
     db.put(img_url)
-    # DEBUG
-    urls = db.get()
-    print(urls)
-    print(random.choices(urls))
+    urls = list(db.get())
+    print(urls)  # DEBUG
+    print(random.choices(urls)[0]['url'])
 
 
 channel.basic_consume(queue='data_trans', on_message_callback=consume_data, auto_ack=True)
