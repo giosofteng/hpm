@@ -3,7 +3,7 @@
 ### Tech Stack (JavaScript / Python)
 * React
 * Flask
-* SQLite (via SQLAlchemy)
+* MongoDB (via PyMongo)
 * RabbitMQ (via Pika)
 * Heroku
 * Prometheus

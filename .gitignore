@@ -1,6 +1,5 @@
 .idea
 venv
-*.sqlite
 .DS_Store
 __PYCACHE__
 IDEAS.txt
