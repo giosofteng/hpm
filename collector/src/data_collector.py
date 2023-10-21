@@ -22,11 +22,12 @@ class DataCollector:
         response = requests.get(self.api_url + 'objects/' + str(object_id))
         return response.json()
 
-    def start_data_collection(self):
+    def start_collecting_data(self):
         self.object_ids = self.get_object_ids()
         for object_id in self.object_ids:
             object_data = self.get_object_data(object_id)
+            print(object_data)  # ! DEBUG
             self.channel.basic_publish('', 'data_raw', json.dumps(object_data).encode('UTF-8'))
 
             time.sleep(1)
-        self.start_data_collection()
+        self.start_collecting_data()
