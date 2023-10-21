@@ -1,7 +1,7 @@
 import requests
 import unittest
 
-from collector.source.data_collector import DataCollector
+from source.data_collector import DataCollector
 
 
 class TestAPI(unittest.TestCase):

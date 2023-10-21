@@ -1,6 +1,6 @@
 import unittest
 
-from collector.source.data_collector import DataCollector
+from source.data_collector import DataCollector
 
 
 class TestDataCollector(unittest.TestCase):
