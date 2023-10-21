@@ -8,7 +8,7 @@ db = DB()
 
 connection = pika.BlockingConnection(pika.ConnectionParameters(host='localhost'))
 channel = connection.channel()
-channel.queue_declare(queue='data_trans')
+channel.queue_declare(queue='data_transformed')
 
 
 def consume_data(channel, method, properties, body):
@@ -19,5 +19,5 @@ def consume_data(channel, method, properties, body):
     print(random.choices(urls)[0]['url'])
 
 
-channel.basic_consume(queue='data_trans', on_message_callback=consume_data, auto_ack=True)
+channel.basic_consume(queue='data_transformed', on_message_callback=consume_data, auto_ack=True)
 channel.start_consuming()
