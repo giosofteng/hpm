@@ -1,24 +1,40 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Dynamic Data Display</title>
+    <title>HISTORY / SECOND</title>
+    <style>
+        body {
+            background: snow;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+            font-family: Arial, sans-serif;
+        }
+        header {
+            color: crimson;
+            padding: 20px;
+            font-size: 24px;
+        }
+        img {
+            width: 100%;
+            height: auto;
+        }
+    </style>
 </head>
 <body>
-    <img id="image" src="" alt="Museum artifact photo">
-
+    <header>
+        HISTORY / SECOND
+    </header>
+    <!-- smaller: https://images.metmuseum.org/CRDImages/ad/web-large/ap66.142.jpg -->
+    <img src="https://images.metmuseum.org/CRDImages/ad/original/ap66.142.jpg" alt="Museum artifact photo">
     <script>
+        const image = document.querySelector('img');
         function fetchData() {
-            // Make an AJAX request to your Flask server
             fetch('/get_data')
                 .then(response => response.json())
-                .then(data => {
-                    // Update the content with the fetched data
-                    document.getElementById('image').src = data['url'];
-                })
+                .then(data => image.src = data['url'])
                 .catch(error => console.error(error));
         }
-
-        // Fetch data every second
         setInterval(fetchData, 1000);
     </script>
 </body>
