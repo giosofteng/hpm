@@ -10,5 +10,8 @@ COPY src /app/src
 COPY tests /app/tests
 
 CMD ["python", "-m", "unittest", "discover", "tests"]
+CMD ["python", "src/main.py"]
 
-ENTRYPOINT ["python", "src/main.py"]
+EXPOSE 5000
+
+ENTRYPOINT ["python", "src/app.py"]
