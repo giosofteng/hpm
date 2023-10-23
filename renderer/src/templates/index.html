@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Dynamic Data Display</title>
+</head>
+<body>
+    <img id="image" src="" alt="Museum artifact photo">
+
+    <script>
+        function fetchData() {
+            // Make an AJAX request to your Flask server
+            fetch('/get_data')
+                .then(response => response.json())
+                .then(data => {
+                    // Update the content with the fetched data
+                    document.getElementById('image').src = data['url'];
+                })
+                .catch(error => console.error(error));
+        }
+
+        // Fetch data every second
+        setInterval(fetchData, 1000);
+    </script>
+</body>
+</html>
