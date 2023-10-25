@@ -1,17 +1,17 @@
-FROM python:3.12.0
+FROM python:3.11.6
 
 WORKDIR /app
 
 COPY requirements.txt /app/
 
-RUN pip install -r requirements.txt
+RUN pip3 install -r requirements.txt
 
 COPY src /app/src
 COPY tests /app/tests
 
-CMD ["python", "-m", "unittest", "discover", "tests"]
-CMD ["python", "src/main.py"]
+CMD ["python3", "-m", "unittest", "discover", "tests"]
+CMD ["python3", "src/main.py"]
 
 EXPOSE 5000
 
-ENTRYPOINT ["python", "src/app.py"]
+ENTRYPOINT ["python3", "src/app.py"]
