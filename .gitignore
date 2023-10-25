@@ -1,7 +1,5 @@
-.idea
-venv
-.DS_Store
 __PYCACHE__
+.DS_Store
+.idea
 IDEAS.txt
-# TEMP
-renderer/front
+venv
