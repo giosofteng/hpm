@@ -1,7 +1,6 @@
 # HISTORY / SECOND
- 
-### Tech Stack (JavaScript / Python)
-* React
+
+### Tech Stack (Python)
 * Flask
 * MongoDB (via PyMongo)
 * RabbitMQ (via Pika)
