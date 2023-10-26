@@ -6,7 +6,7 @@ class AMQP:
     def __init__(self, db):
         self.db = db
 
-        parameters = pika.ConnectionParameters('localhost')  # ! DEBUG
+        parameters = pika.ConnectionParameters('rabbitmq')  # ! DEBUG
         connection = pika.BlockingConnection(parameters)
         self.channel = connection.channel()
         self.channel.queue_declare('data_transformed')

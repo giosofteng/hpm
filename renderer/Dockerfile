@@ -1,15 +1,15 @@
 FROM python:3.11.6
 
+RUN apt-get update && apt-get install -y supervisor
+
+COPY supervisord.conf /etc/supervisor/conf.d/supervisord.conf
+
 WORKDIR /app
 
-COPY requirements.txt /app/
+COPY . /app
 
 RUN pip3 install -r requirements.txt
 
-COPY src /app/src
-
-CMD ["python3", "src/main.py"]
-
 EXPOSE 5000
 
-ENTRYPOINT ["python3", "src/app.py"]
+ENTRYPOINT ["/usr/bin/supervisord"]
