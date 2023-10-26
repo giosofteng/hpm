@@ -9,7 +9,7 @@ class DataCollector:
         self.api_url = 'https://collectionapi.metmuseum.org/public/collection/v1/'
         self.object_ids = []
 
-        parameters = pika.ConnectionParameters('localhost')  # ! DEBUG
+        parameters = pika.ConnectionParameters('rabbitmq')  # ! DEBUG
         connection = pika.BlockingConnection(parameters)
         self.channel = connection.channel()
         self.channel.queue_declare('data_raw')
