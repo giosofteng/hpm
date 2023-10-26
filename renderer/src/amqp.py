@@ -1,6 +1,6 @@
 import os
 import pika
-import random
+# import random  # ! DEBUG
 
 
 class AMQP:
