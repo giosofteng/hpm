@@ -1,11 +1,14 @@
 import json
+import os
 import pika
 import requests
 
 
 class DataTransformer:
     def __init__(self):
-        parameters = pika.ConnectionParameters('rabbitmq')  # ! DEBUG
+        url = os.environ.get('CLOUDAMQP_URL', 'rabbitmq')
+        parameters = pika.URLParameters(url)
+        parameters.socket_timeout = 5
         connection = pika.BlockingConnection(parameters)
         self.channel = connection.channel()
         self.channel.queue_declare('data_raw')

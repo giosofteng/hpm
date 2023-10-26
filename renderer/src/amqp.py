@@ -1,3 +1,4 @@
+import os
 import pika
 import random
 
@@ -6,7 +7,9 @@ class AMQP:
     def __init__(self, db):
         self.db = db
 
-        parameters = pika.ConnectionParameters('rabbitmq')  # ! DEBUG
+        url = os.environ.get('CLOUDAMQP_URL', 'rabbitmq')
+        parameters = pika.URLParameters(url)
+        parameters.socket_timeout = 5
         connection = pika.BlockingConnection(parameters)
         self.channel = connection.channel()
         self.channel.queue_declare('data_transformed')

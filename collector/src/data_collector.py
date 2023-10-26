@@ -1,4 +1,5 @@
 import json
+import os
 import pika
 import requests
 import time
@@ -9,7 +10,9 @@ class DataCollector:
         self.api_url = 'https://collectionapi.metmuseum.org/public/collection/v1/'
         self.object_ids = []
 
-        parameters = pika.ConnectionParameters('rabbitmq')  # ! DEBUG
+        url = os.environ.get('CLOUDAMQP_URL', 'rabbitmq')
+        parameters = pika.URLParameters(url)
+        parameters.socket_timeout = 5
         connection = pika.BlockingConnection(parameters)
         self.channel = connection.channel()
         self.channel.queue_declare('data_raw')
@@ -26,8 +29,7 @@ class DataCollector:
         self.object_ids = self.get_object_ids()
         for object_id in self.object_ids:
             object_data = self.get_object_data(object_id)
-            print(object_data)  # ! DEBUG
+            # print(object_data)  # ! DEBUG
             self.channel.basic_publish('', 'data_raw', json.dumps(object_data).encode('UTF-8'))
 
-            time.sleep(1)
-        # self.start_collecting_data()
+            time.sleep(60)
