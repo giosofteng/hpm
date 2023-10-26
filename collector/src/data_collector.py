@@ -30,4 +30,4 @@ class DataCollector:
             self.channel.basic_publish('', 'data_raw', json.dumps(object_data).encode('UTF-8'))
 
             time.sleep(1)
-        self.start_collecting_data()
+        # self.start_collecting_data()

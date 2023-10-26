@@ -1,0 +1,8 @@
+build:
+    - docker:
+        worker-collector: ./collector
+    - docker:
+        worker-transformer: ./transformer
+    - docker:
+        web: ./renderer
+        worker-renderer: ./renderer
