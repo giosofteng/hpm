@@ -16,7 +16,7 @@ class DataTransformer:
 
     def transform_data(self, channel, method, properties, body):
         data = json.loads(body)
-        print(data)  # ! DEBUG
+        # print(data)  # ! DEBUG
         url = data['primaryImageSmall']
         if url:
             response = requests.get(url)

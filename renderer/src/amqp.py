@@ -18,9 +18,9 @@ class AMQP:
         url = body.decode('UTF-8')
         self.db.put(url)
         # ! DEBUG
-        urls = list(self.db.get())
-        print(urls)
-        print(random.choices(urls)[0]['url'])
+        # urls = list(self.db.get())
+        # print(urls)
+        # print(random.choices(urls)[0]['url'])
 
     def start_storing_data(self):
         self.channel.basic_consume('data_transformed', self.store_data, True)

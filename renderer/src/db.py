@@ -1,17 +1,19 @@
+import os
 from pymongo import MongoClient
 
 
 class DB:
     def __init__(self):
-        client = MongoClient('mongo')  # ! DEBUG
+        host = os.environ.get('ORMONGO_URL', 'mongo')
+        client = MongoClient(host)
         db = client['db']
         self.images = db['images']
         self.empty()
 
     def put(self, url):
         if self.images.count_documents({}) > 1000:
-            print("DB EMPTIED")  # ! DEBUG
             self.empty()
+            # print("DB EMPTIED")  # ! DEBUG
         self.images.insert_one({'url': url})
 
     def get(self):
