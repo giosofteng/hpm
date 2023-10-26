@@ -13,4 +13,4 @@ RUN pip3 install -r requirements.txt
 
 EXPOSE 5000
 
-ENTRYPOINT ["bash", "/opt/bin/run_supervisord.sh"]
+CMD ["/usr/bin/supervisord"]
