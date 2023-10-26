@@ -15,8 +15,9 @@ def home():
 @app.route('/get_data')
 def get_data():
     urls = list(db.get())
-    data = {'url': random.choices(urls)[0]['url']}
-    return jsonify(data)
+    if len(urls):
+        data = {'url': random.choices(urls)[0]['url']}
+        return jsonify(data)
 
 
 if __name__ == '__main__':
