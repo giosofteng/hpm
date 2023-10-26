@@ -3,7 +3,7 @@ FROM python:3.11.6
 RUN apt-get update && apt-get install -y supervisor
 
 COPY supervisord.conf /etc/supervisor/conf.d/supervisord.conf
-COPY image_scripts/run_supervisord.sh /opt/bin/run_supervisord.sh
+COPY run_supervisord.sh /opt/bin/run_supervisord.sh
 
 WORKDIR /app
 
