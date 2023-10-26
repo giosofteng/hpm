@@ -1,8 +1,8 @@
 build:
     - docker:
-        worker-collector: ./collector
+        worker-collector: ./collector/Dockerfile
     - docker:
-        worker-transformer: ./transformer
+        worker-transformer: ./transformer/Dockerfile
     - docker:
-        web: ./renderer
-        worker-renderer: ./renderer
+        web: ./renderer/Dockerfile
+        worker-renderer: ./renderer/Dockerfile
