@@ -4,7 +4,7 @@ from pymongo import MongoClient
 
 class DB:
     def __init__(self):
-        host = os.environ.get('ORMONGO_URL', 'mongo')
+        host = os.environ.get('MONGO_URI', 'mongo')
         client = MongoClient(host)
         db = client['db']
         self.images = db['images']
