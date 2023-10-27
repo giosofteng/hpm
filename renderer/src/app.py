@@ -6,7 +6,6 @@ from main import db
 
 
 app = Flask(__name__)
-port = int(os.environ.get('PORT', 5000))
 
 
 @app.route('/')
@@ -25,4 +24,5 @@ def get_data():
 
 
 if __name__ == '__main__':
+    port = int(os.environ.get('PORT', 5000))
     app.run('0.0.0.0', port)
