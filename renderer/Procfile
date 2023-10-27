@@ -1,1 +1,1 @@
-web: supervisord -n
+web: supervisord
