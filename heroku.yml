@@ -1,6 +1,5 @@
 build:
     docker:
-        renderer-web: ./renderer/RendererWebDockerfile
-        renderer-worker: ./renderer/RendererWorkerDockerfile
+        renderer: ./renderer/RendererDockerfile
         transformer: ./transformer/TransformerDockerfile
         collector: ./collector/CollectorDockerfile
