@@ -25,4 +25,5 @@ def get_data():
 
 
 if __name__ == '__main__':
+    print('test')
     app.run('0.0.0.0', port)
