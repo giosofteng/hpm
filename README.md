@@ -1,7 +1,6 @@
 # HISTORY / SECOND
 
-This is my final project for _CSCA 5028 Applications of Software Architecture for Big Data at CU Boulder_. You can view
-it on any web-enabled device at https://gz-hps-01b3926752ea.herokuapp.com The aim of the project is to showcase the vast
+This is my final project for _CSCA 5028 Applications of Software Architecture for Big Data at CU Boulder_. Its aim is to showcase the vast
 collection of historical artifacts at NYC's Metropolitan Museum of Art. It accomplishes this by displaying a new photo
 of a random item from the museum's collection (roughly) every second.
 
